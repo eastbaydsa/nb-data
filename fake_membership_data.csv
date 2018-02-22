@@ -1,4 +1,4 @@
-external_id,first_name,last_name,email,started_at,expires on,status,name
+external_id,first_name,last_name,email,started_at,expires_on,status,name
 99804,fake_1,marx_1,fake_1 marx_1_@fakemail.com,3/18/17,3/18/18,active,National
 73893,fake_2,marx_2,fake_2 marx_2_@fakemail.com,2/10/17,2/10/18,active,National
 11857,fake_3,marx_3,fake_3 marx_3_@fakemail.com,4/29/17,4/29/18,active,National

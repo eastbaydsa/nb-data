@@ -11,7 +11,6 @@ import json
 DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
-user = "python"
 schema = "nb"
 table = "people"
 schema_table = "{0}.{1}".format(schema, table)
@@ -97,7 +96,7 @@ cur = conn.cursor()
 cur.execute("DROP SCHEMA IF EXISTS {0} CASCADE;".format(schema))
 
 # create new schema	
-cur.execute("CREATE SCHEMA IF NOT EXISTS {0} AUTHORIZATION {1};".format(schema, user))	
+cur.execute("CREATE SCHEMA IF NOT EXISTS {0};".format(schema))	
 
 # create table
 cur.execute("""CREATE TABLE IF NOT EXISTS {0} ({1}, PRIMARY KEY("email"));""".format(schema_table, sql_create_table_cols))

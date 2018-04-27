@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/python3.6
 
 import sys
 import os
@@ -7,19 +7,11 @@ import psycopg2
 import requests
 import json
 
-#urlparse.uses_netloc.append("postgres")
-#url = urlparse.urlparse(os.environ["DATABASE_URL"])
-
-#conn = psycopg2.connect(
-#	database = url.path[1:],
-#	user=url.username,
-#	password=url.password,
-#	host=url.hostname,
-#	port=url.port
-#)
+# connect to postgres
+DATABASE_URL = os.environ['DATABASE_URL']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 user = "python"
-password = "python"
 schema = "nb"
 table = "people"
 schema_table = "{0}.{1}".format(schema, table)
@@ -99,7 +91,6 @@ sql_insert_cols = ','.join(""""{0}\"""".format(key) for key in unique_field_keys
 sql_create_table_cols = ','.join(""""{0}" text""".format(key) for key in unique_field_keys)
 
 # connect to postgres
-conn = psycopg2.connect("dbname='db1' user='{0}' host='localhost' password='{1}'".format(user, password))
 cur = conn.cursor()
 
 # clean up old stuff

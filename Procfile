@@ -1,1 +1,1 @@
-worker: python db-connect.py
+worker: python db-connect.py 0fc808d93bc4880e99db0a97fcc272ded5bc29bdf0b7be85687379112134234b

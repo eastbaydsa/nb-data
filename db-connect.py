@@ -2,7 +2,7 @@
 
 import sys
 import os
-import urlparse
+from urllib.parse import urlparse
 import psycopg2
 import requests
 import json

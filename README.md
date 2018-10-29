@@ -44,3 +44,13 @@ Removing existing list: 124 (mbrs_housing_1)
 Assigning committee housing list 1 to housing-chair-1@gmail.com
 Assigning committee housing list 2 to housing-chair-2@gmail.com
 ```
+
+## Update Phone Records
+
+`(update_phone_records.rb)`
+
+This script pulls the list of all members with the tag 'rapid_response_labor', examines their
+assigned home phone and mobile phone records to make sure both are filled in. If one is present 
+and the other is missing, the missing number will be filled in with the other record. This 
+script uses variables NATION and TOKEN like committee membership script, and is executed the 
+same way.

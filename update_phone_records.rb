@@ -24,8 +24,7 @@ members_page = NationBuilder::Paginator.new(client, members_result)
 
 loop do
   members_page.body['results'].each do |m|
-    update = false
-    if m.key?('delete_mobile')
+    if m.key?('delete_mobile') && !(m['delete_mobile'].nil? || m['delete_mobile'].empty?) && m['delete_mobile']
       m['mobile'] = nil
       puts 'deleting mobile...'
       puts m['first_name']

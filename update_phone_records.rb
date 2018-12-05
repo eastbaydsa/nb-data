@@ -1,15 +1,17 @@
 require 'bundler/inline'
 
 gemfile do
-  source 'https://rubygems.org'
+ source 'https://rubygems.org'
   gem 'activesupport'
+  gem 'dotenv'
   gem 'nationbuilder-rb', require: 'nationbuilder'
 end
 
 require 'active_support/all'
 
-api_token = ENV['TOKEN']
-nation = ENV['NATION']
+Dotenv.load
+api_token = ENV['NATION_API_TOKEN']
+nation = ENV['NATION_NAME']
 client = NationBuilder::Client.new(nation, api_token)
 
 # Config
@@ -23,18 +25,11 @@ members_page = NationBuilder::Paginator.new(client, members_result)
 loop do
   members_page.body['results'].each do |m|
     update = false
-    if (m['phone'].nil? || m['phone'].empty?) && !(m['mobile'].nil? || m['mobile'].empty?)
-      m['phone'] = m['mobile']
-      update = true
-    elsif (m['mobile'].nil? || m['mobile'].empty?) && !(m['phone'].nil? || m['phone'].empty?)
-      m['mobile'] = m['phone']
-      update = true
-    end
-    if update
-      puts 'updating...'
+    if m.key?('delete_mobile')
+      m['mobile'] = nil
+      puts 'deleting mobile...'
       puts m['first_name']
       client.call(:people, :update, person:m, id:m['id'])
-      puts 'updated'
     end
   end
   if members_page.next?

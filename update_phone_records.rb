@@ -15,12 +15,8 @@ api_token = ENV['NATION_API_TOKEN']
 nation = ENV['NATION_NAME']
 client = NationBuilder::Client.new(nation, api_token)
 
-# Config
-RAPID_RESPONSE_LABOR = 'rapid_response_labor'
-
-# "Get all members who have signed up for labor rapid response
 puts 'Fetching members...'
-members_result = client.call(:people_tags, :people, tag: RAPID_RESPONSE_LABOR, limit: 100)
+members_result = client.call(:people_tags, :people, tag: 'delete_mobile')
 members_page = NationBuilder::Paginator.new(client, members_result)
 
 loop do
